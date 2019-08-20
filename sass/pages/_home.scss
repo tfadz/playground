@@ -1,0 +1,54 @@
+.home {
+  background: #f9f9f9;
+}
+
+.hero {
+  background: radial-gradient(circle at 90%, $blue, $white);
+  display: block;
+  min-height: 600px;
+  padding-bottom: 4rem;
+
+  h1 {
+    font-size: 3.75rem;
+    font-family: $serif;
+    color: $black;
+    max-width: 600px;
+  }
+
+  button {
+    background: $red;
+
+    &:hover {
+      background: $black;
+      box-shadow: 0 0 0 2px $white;
+    }
+  }
+}
+
+.mycontainer {
+  display: none;
+}
+
+#posts-container {
+  padding: 2rem;
+  position: relative;
+
+  h2 {
+    padding: .75rem 2rem;
+    color: $black;
+    background: $red;
+    display: inline-block;
+    margin-bottom: -.5rem;
+    margin-left: -1rem;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    margin-top: 2rem;
+  }
+
+  p {
+    background: $white;
+    padding: 1.25rem 2rem;
+    margin: 0;
+    color: $black;
+  }
+}

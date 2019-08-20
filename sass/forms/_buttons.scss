@@ -1,0 +1,52 @@
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	border: none;
+	border-color: $color__border-button;
+	border-radius: 3px;
+	background: $color__background-button;
+	color: rgba(0, 0, 0, .8);
+	@include font-size(0.75);
+	line-height: 1;
+	padding: .6em 1em .4em;
+
+	&:hover {
+		border-color: $color__border-button-hover;
+	}
+
+	&:active,
+	&:focus {
+		border-color: $color__border-button-focus;
+	}
+}
+
+.primary {
+	background: $black;
+	color: $white;
+	padding: 1rem;
+	font-size: 1rem;
+	margin: 1rem;
+	font-family: $serif;
+	transition: .5s all;
+	&:hover {
+		background: $red;
+		animation-name: pulse;
+	}
+}
+
+.btn {
+	background: $red;
+	color: $white;
+	font-size: 1rem;
+	font-family: $serif;
+	transform: .3s all;
+
+	&:hover {
+		background: $black;
+	}
+
+	&:visited, &:focus {
+		color: $white;
+	}
+}

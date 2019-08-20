@@ -1,0 +1,32 @@
+.site-footer {
+  color: $white;
+  margin-top: -1rem;
+
+  &__main {
+    background: none;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+    font-weight: 300;
+    font-size: .8rem;
+    padding-right: 2rem;
+  }
+
+  a {
+    color: $black;
+    font-family: $serif;
+    font-size: .9rem;
+  }
+}
+
+.footer-menu .menu {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    padding: 1rem;
+    color: #999;
+  }
+}
