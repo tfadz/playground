@@ -22,59 +22,57 @@ get_header();
 			<div class="col-lg-12">
 				<div class="blog-search-filter">
 
-
 					<form action="<?php echo site_url() ?>/wp-admin/admin-ajax.php" method="POST" id="filter">
 						<?php
 						if( $terms = get_terms( array( 'taxonomy' => 'category', 'orderby' => 'name' ) ) ) : 
 
-							echo '<select name="categoryfilter"><option value="">Select category...</option>';
+							echo '<select name="categoryfilter"><option value="">Select category</option>';
 							foreach ( $terms as $term ) :
-			echo '<option value="' . $term->term_id . '">' . $term->name . '</option>'; // ID of the category as the value of an option
-		endforeach;
-		echo '</select>';
-	endif;
-	?>
+							echo '<option value="' . $term->term_id . '">' . $term->name . '</option>'; // ID of the category as the value of an option
+							endforeach;
+						echo '</select>';
+						endif;
+						?>
+						<label>
+							<input type="radio" name="date" value="ASC" /> Date: Ascending
+						</label>
+						<label>
+							<input type="radio" name="date" value="DESC" selected="selected" /> Date: Descending
+						</label>
 
+						<button id="filter-btn">Apply filter</button>
+						<button id="reset-btn">Reset</button>
+						<input type="hidden" name="action" value="myfilter">
+					</form>
+				</div>
+			</div>
+		</div>
 
-	<label>
-		<input type="radio" name="date" value="ASC" /> Date: Ascending
-	</label>
-	<label>
-		<input type="radio" name="date" value="DESC" selected="selected" /> Date: Descending
-	</label>
-	<button>Apply filter</button>
-	<input type="hidden" name="action" value="myfilter">
-</form>
+		<div class="row">
+			<div class="col-lg-12">
+				<section id="response" class="blog-articles">
 
-</div>
-</div>
-</div>
+					<?php
+					if(have_posts()) : 
+						while(have_posts()) : 
+							the_post(); 
+					?>
+					<?php get_template_part( 'template-parts/post-card'); ?>
 
-<div class="row">
-	<div class="col-lg-12">
-		<section id="response" class="blog-articles">
+					<?php
+					endwhile;
+					else : 
+					?>
 
-			<?php
-			if(have_posts()) : 
-				while(have_posts()) : 
-					the_post(); 
-			?>
-			<?php get_template_part( 'template-parts/post-card'); ?>
+					Oops, there are no posts.
 
-			<?php
-			endwhile;
-			else : 
-			?>
-
-			Oops, there are no posts.
-
-			<?php
-			endif;
-			?>
-			
-		</section>
-	</div>		
-</div>
+					<?php
+					endif;
+					?>
+					
+				</section>
+			</div>		
+		</div>
 
 </main><!-- #main -->
 </div><!-- #primary -->

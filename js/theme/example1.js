@@ -47,13 +47,32 @@ jQuery(function($){
       data:filter.serialize(), // form data
       type:filter.attr('method'), // POST
       beforeSend:function(xhr){
-        filter.find('button').text('Processing...'); // changing the button label
+        filter.find('button#filter-btn').text('Refreshing...'); // changing the button label
       },
       success:function(data){
-        filter.find('button').text('Apply filter'); // changing the button label back
+        filter.find('button#filter-btn').text('Apply filter'); // changing the button label back
         $('#response').html(data); // insert data
       }
     });
     return false;
+  });
+
+  // Reset FILTER //  
+  // Reset Filter //    
+  $("#reset-btn").click(function() {
+    document.getElementById('filter').reset(); 
+    $('#response').append();
+ 
+    var filter = $('#filter');
+ 
+    $.ajax({
+      url:filter.attr('action'),
+      type:filter.attr('method'),
+      data:filter.serialize(),
+      success:function(data){
+        $('#response').html(data);
+      }
+      }); 
+        return false;
   });
 });

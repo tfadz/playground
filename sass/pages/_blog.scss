@@ -92,5 +92,12 @@
 
 .blog-search-filter {
   margin-bottom: 1rem;
-  
+
+  button {
+    background: $red;
+    color: $white;
+    border: none;
+    padding: .5rem .85rem;
+  }
+
 }
