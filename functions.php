@@ -177,6 +177,43 @@ function blog_filter_function(){
 }
 
 
+
+
+function load_my_posts() {
+
+	// Adjust our query parameters when being called via AJAX.
+  if ( wp_doing_ajax() ) {
+    // Start Output buffer.
+    ob_start();
+  }
+
+   $args = array(
+    'suppress_filters' => true,
+    'post_status'      => 'publish',
+    'post_type'        => 'post',
+    'orderby'          => 'date',
+    'order'            => 'DESC',
+    'posts_per_page'   => -1,
+  );
+
+   $query_cards = new WP_Query( $args );
+
+  if ( $query_cards->have_posts() ) :
+    while ( $query_cards->have_posts() ) :
+      $query_cards->the_post();
+      include get_stylesheet_directory() . '/template-parts/card-post.php';
+
+    endwhile;
+    wp_reset_postdata();
+  endif;
+
+}
+
+add_action('wp_ajax_my_posts', 'load_my_posts'); // wp_ajax_{ACTION HERE} 
+add_action('wp_ajax_nopriv_my_posts', 'load_my_posts');
+
+
+
 // Add Font Awesome
 function themeslug_enqueue_script() {
     wp_enqueue_script( 'fontawesome-js', 'https://use.fontawesome.com/377a5e06d7.js', false );

@@ -26,7 +26,7 @@ get_header();
 						<?php
 						if( $terms = get_terms( array( 'taxonomy' => 'category', 'orderby' => 'name' ) ) ) : 
 
-							echo '<select name="categoryfilter"><option value="">Select category</option>';
+							echo '<select name="categoryfilter" class="select-css"><option value="">Select category</option>';
 							foreach ( $terms as $term ) :
 							echo '<option value="' . $term->term_id . '">' . $term->name . '</option>'; // ID of the category as the value of an option
 							endforeach;
@@ -40,9 +40,11 @@ get_header();
 							<input type="radio" name="date" value="DESC" selected="selected" /> Date: Descending
 						</label>
 
-						<button id="filter-btn">Apply filter</button>
-						<button id="reset-btn">Reset</button>
-						<input type="hidden" name="action" value="myfilter">
+						<div class="filter-actions">
+							<button id="filter-btn" disabled>Apply filter</button>
+							<button id="reset-btn" disabled>Reset</button>
+							<input type="hidden" name="action" value="myfilter">
+						</div>
 					</form>
 				</div>
 			</div>
@@ -53,16 +55,12 @@ get_header();
 				<section id="response" class="blog-articles">
 
 					<?php
-					if(have_posts()) : 
-						while(have_posts()) : 
-							the_post(); 
+						if(have_posts()) : 
+						while(have_posts()) : the_post(); 
 					?>
 					<?php get_template_part( 'template-parts/post-card'); ?>
 
-					<?php
-					endwhile;
-					else : 
-					?>
+					<?php endwhile; else : ?>
 
 					Oops, there are no posts.
 

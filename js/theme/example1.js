@@ -57,22 +57,27 @@ jQuery(function($){
     return false;
   });
 
+  $(".select-css").change(function() {
+    $('button').addClass('active');
+    $('button').removeAttr('disabled');
+  });
+
+
   // Reset FILTER //  
-  // Reset Filter //    
-  $("#reset-btn").click(function() {
-    document.getElementById('filter').reset(); 
-    $('#response').append();
- 
-    var filter = $('#filter');
- 
+   $('#reset-btn').click(function(e){
+    e.preventDefault();
+
+    $('#filter').reset(); 
+
     $.ajax({
-      url:filter.attr('action'),
-      type:filter.attr('method'),
-      data:filter.serialize(),
+      type: 'post',
+      data: {
+        page: page,
+        action: 'my_posts'
+      },
       success:function(data){
         $('#response').html(data);
       }
-      }); 
-        return false;
+    }); 
   });
 });
